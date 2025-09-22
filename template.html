@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Saya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Light Mode */
+            --primary-color: #007BFF;
+            --background-color: #F4F4F9;
+            --text-color: #333333;
+            --secondary-text-color: #555555;
+            --card-background: #FFFFFF;
+            --border-color: #DDDDDD;
+            --link-hover: #0056b3;
+        }
+
+        body.dark-mode {
+            /* Dark Mode */
+            --primary-color: #28a745;
+            --background-color: #1a1a1a;
+            --text-color: #E0E0E0;
+            --secondary-text-color: #B0B0B0;
+            --card-background: #2a2a2a;
+            --border-color: #444444;
+            --link-hover: #218838;
+        }
+
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* HEADER */
+        .header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: var(--card-background);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .navbar a {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 2.5rem;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--primary-color);
+        }
+
+        .theme-switcher {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .theme-switcher:hover {
+            color: var(--primary-color);
+        }
+
+        /* MAIN CONTENT & SECTIONS */
+        .section {
+            min-height: 100vh;
+            padding: 6rem 5% 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heading {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary-color);
+            color: var(--card-background);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--link-hover);
+        }
+
+        /* HOME SECTION */
+        .home {
+            flex-direction: row;
+            justify-content: space-around;
+            text-align: left;
+        }
+
+        .home-content {
+            flex: 1;
+        }
+
+        .home-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .home-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .home-content p {
+            font-size: 1rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .home-img img {
+            max-width: 400px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            flex-direction: column;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-img img {
+            max-width: 350px;
+            border-radius: 1rem;
+        }
+
+        .about-text {
+            max-width: 600px;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        /* EDUCATION SECTION */
+        .education-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            padding: 2rem;
+            position: relative;
+            background: var(--card-background);
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        /* SKILLS SECTION */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .skill-item {
+            background: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* PROJECTS SECTION */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .project-card {
+            background: var(--card-background);
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            padding: 1rem;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            padding: 0 1rem 1rem;
+            color: var(--secondary-text-color);
+        }
+
+        .project-card .btn {
+            margin: 0 1rem 1rem;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 1.5rem 5%;
+            background: var(--card-background);
+            text-align: center;
+            color: var(--secondary-text-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .social-icons a {
+            color: var(--secondary-text-color);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 1rem 5%;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+            .navbar a {
+                margin: 0.5rem 0;
+            }
+            .theme-switcher {
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+            }
+            .home,
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-text {
+                text-align: center;
+            }
+            .home-img,
+            .about-img {
+                margin-top: 2rem;
+            }
+            .education-timeline::before {
+                left: 20px;
+                transform: none;
+            }
+            .timeline-item {
+                border-left: 2px solid var(--primary-color);
+                border-right: none;
+                padding-left: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="#" class="logo">Portofolio Saya</a>
+        <nav class="navbar">
+            <a href="#home">Beranda</a>
+            <a href="#about">Tentang</a>
+            <a href="#education">Edukasi</a>
+            <a href="#skills">Keahlian</a>
+            <a href="#projects">Proyek</a>
+        </nav>
+        <div class="theme-switcher" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </div>
+    </header>
+
+    <main>
+        <section class="section home" id="home">
+            <div class="home-content">
+                <h1>Halo, saya [Nama Anda]</h1>
+                <h3>Pengembang Web</h3>
+                <p>Saya adalah seorang pengembang web yang bersemangat untuk menciptakan pengalaman digital yang menarik dan fungsional. Saya memiliki keahlian dalam...</p>
+                <a href="#" class="btn">Hubungi Saya</a>
+            </div>
+            <div class="home-img">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/13619541576899893273_0" alt="Foto Profil">
+            </div>
+        </section>
+
+        <section class="section about" id="about">
+            <h2 class="heading">Tentang Saya</h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="
+
+http://googleusercontent.com/image_collection/image_retrieval/12851672336158104736_0
+" alt="Foto Sekunder">
+                </div>
+                <div class="about-text">
+                    <p>Lahir di kota [Nama Kota], saya memiliki ketertarikan yang besar pada dunia teknologi sejak usia dini. Saya memulai perjalanan saya dalam pengembangan web dengan...</p>
+                    <p>Selain coding, saya juga menikmati [Hobi Lain]. Tujuan saya adalah untuk terus belajar dan berkembang, menciptakan solusi inovatif yang bermanfaat bagi banyak orang.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section education" id="education">
+            <h2 class="heading">Edukasi</h2>
+            <div class="education-timeline">
+                <div class="timeline-item">
+                    <h3>[Tahun] - [Tahun]</h3>
+                    <h4>[Nama Universitas/Sekolah]</h4>
+                    <p>Jurusan: [Nama Jurusan]</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>[Tahun] - [Tahun]</h3>
+                    <h4>[Nama Pelatihan]</h4>
+                    <p>Sertifikasi: [Nama Sertifikasi]</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section skills" id="skills">
+            <h2 class="heading">Keahlian</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fab fa-html5"></i>
+                    <h4>HTML5</h4>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-css3-alt"></i>
+                    <h4>CSS3</h4>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-js-square"></i>
+                    <h4>JavaScript</h4>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-react"></i>
+                    <h4>ReactJS</h4>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-node-js"></i>
+                    <h4>Node.js</h4>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-git-alt"></i>
+                    <h4>Git</h4>
+                </div>
+            </div>
+        </section>
+
+        <section class="section projects" id="projects">
+            <h2 class="heading">Proyek</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="
+
+http://googleusercontent.com/image_collection/image_retrieval/8112498866563428970_0
+" alt="Proyek 1">
+                    <h3>Proyek 1</h3>
+                    <p>Deskripsi singkat tentang proyek ini. Teknologi yang digunakan: HTML, CSS, JavaScript.</p>
+                    <a href="#" class="btn">Lihat Demo</a>
+                </div>
+                <div class="project-card">
+                    <img src="
+
+http://googleusercontent.com/image_collection/image_retrieval/7435311160155681534_0
+" alt="Proyek 2">
+                    <h3>Proyek 2</h3>
+                    <p>Deskripsi singkat tentang proyek ini. Teknologi yang digunakan: React, Node.js.</p>
+                    <a href="#" class="btn">Lihat Demo</a>
+                </div>
+                <div class="project-card">
+                    <img src="
+
+http://googleusercontent.com/image_collection/image_retrieval/18095428652517302764_0
+" alt="Proyek 3">
+                    <h3>Proyek 3</h3>
+                    <p>Deskripsi singkat tentang proyek ini. Teknologi yang digunakan: Vue.js, Firebase.</p>
+                    <a href="#" class="btn">Lihat Demo</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Portofolio Saya. Semua hak cipta dilindungi.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            // Cek preferensi tema dari local storage saat halaman dimuat
+            const currentTheme = localStorage.getItem('theme');
+            if (currentTheme) {
+                body.classList.add(currentTheme);
+            }
+
+            // Toggle mode gelap/terang
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                // Simpan preferensi tema di local storage
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark-mode');
+                } else {
+                    localStorage.removeItem('theme');
+                }
+            });
+
+            // Menambahkan kelas 'active' pada navbar saat section terlihat
+            const sections = document.querySelectorAll('section[id]');
+            
+            function setActiveLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= sectionTop - 60) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                document.querySelectorAll('.navbar a').forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href').includes(current)) {
+                        a.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', setActiveLink);
+        });
+    </script>
+</body>
+</html>
